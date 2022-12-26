@@ -13,10 +13,10 @@ import static org.junit.Assert.assertEquals;
 @RunWith(MockitoJUnitRunner.class)
 public class CatTest {
     @Mock
-    Feline mockCat;
+    Feline feline;
     @Test
     public void checkGetSound_getMyau() {
-        Cat cat = new Cat(mockCat);
+        Cat cat = new Cat(feline);
         String expected = "Мяу";
         assertEquals("Кот должен мяукать",expected, cat.getSound());
     }
@@ -24,9 +24,10 @@ public class CatTest {
 
     @Test
     public void   checkGetFood_shouldEatMeet() throws Exception {
-        Cat cat = new Cat(mockCat);
-        Mockito.when(mockCat.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        Cat cat = new Cat(feline);
         List<String> expected = List.of("Животные", "Птицы", "Рыба");
+        Mockito.when(feline.eatMeat()).thenReturn(expected);
+        //List<String> expected = List.of("Животные", "Птицы", "Рыба");
         assertEquals(" Ожидается, что кот питается животными, птицами,рыбой " ,expected,cat.getFood());
     }
 }
